@@ -34,7 +34,7 @@ const env = {
 function getDefaults() {
 	return {
 		android: "android/app/build.gradle",
-		ios: "ios"
+		ios: "ios/App"
 	};
 }
 
@@ -132,7 +132,6 @@ function version(program, projectPath) {
 	var appPkg;
 
 	try {
-		resolveFrom(projPath, "react-scripts");
 		appPkg = require(path.join(projPath, "package.json"));
 	} catch (err) {
 		if (err.message === "Cannot find module 'react-scripts'") {
@@ -165,21 +164,6 @@ function version(program, projectPath) {
 		process.exit(1);
 	}
 
-	var appJSON;
-	const appJSONPath = path.join(projPath, "app.json");
-
-	try {
-		appJSON = require(appJSONPath);
-
-		if (isExpoApp && !programOpts.incrementBuild) {
-			appJSON = Object.assign({}, appJSON, {
-				expo: Object.assign({}, appJSON.expo, {
-					version: appPkg.version
-				})
-			});
-		}
-	} catch (err) { }
-
 	var android;
 	var ios;
 
@@ -192,20 +176,19 @@ function version(program, projectPath) {
 			try {
 				gradleFile = fs.readFileSync(programOpts.android, "utf8");
 			} catch (err) {
-				isExpoApp ||
-					reject([
-						{
-							style: "red",
-							text: "No gradle file found at " + programOpts.android
-						},
-						{
-							style: "yellow",
-							text: 'Use the "--android" option to specify the path manually'
-						}
-					]);
+				reject([
+					{
+						style: "red",
+						text: "No gradle file found at " + programOpts.android
+					},
+					{
+						style: "yellow",
+						text: 'Use the "--android" option to specify the path manually'
+					}
+				]);
 			}
 
-			if (!programOpts.incrementBuild && !isExpoApp) {
+			if (!programOpts.incrementBuild) {
 				gradleFile = gradleFile.replace(
 					/versionName (["'])(.*)["']/,
 					"versionName $1" + appPkg.version + "$1"
@@ -428,7 +411,7 @@ function version(program, projectPath) {
 						child.spawnSync(
 							"git",
 							["add"].concat(
-								isExpoApp ? appJSONPath : [programOpts.android, programOpts.ios]
+								[programOpts.android, programOpts.ios]
 							),
 							gitCmdOpts
 						);
