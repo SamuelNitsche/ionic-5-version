@@ -16,7 +16,7 @@ function list(val) {
  */
 function log(msg, silent) {
 	if (!silent) {
-		console.log("[RNV]", chalk[msg.style || "reset"](msg.text));
+		console.log("[I5V]", chalk[msg.style || "reset"](msg.text));
 	}
 }
 
