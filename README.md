@@ -1,9 +1,4 @@
-# react-native-version
-
-[![license](https://badgen.net/github/license/stovmascript/react-native-version)](https://github.com/stovmascript/react-native-version/blob/master/LICENSE)
-[![npm](https://badgen.net/npm/v/react-native-version)](https://www.npmjs.com/package/react-native-version)
-[![test](https://github.com/stovmascript/react-native-version/workflows/Test/badge.svg)](https://github.com/stovmascript/react-native-version/actions)
-[![david](https://badgen.net/david/dep/stovmascript/react-native-version)](https://github.com/stovmascript/react-native-version/network/dependencies)
+# ionic-5-version
 
 Seamlessly shadows the behaviour of [`npm version`](https://docs.npmjs.com/cli/version).
 
@@ -12,9 +7,9 @@ Seamlessly shadows the behaviour of [`npm version`](https://docs.npmjs.com/cli/v
 ### Setup
 
 ```bash
-$ npm install react-native-version --save-dev
+$ npm install ionic-5-version --save-dev
 # or
-$ yarn add react-native-version --dev
+$ yarn add ionic-5-version --dev
 ```
 
 Hook into the "version" or "postversion" npm script in your app's package.json:
@@ -25,7 +20,7 @@ Hook into the "version" or "postversion" npm script in your app's package.json:
   "version": "0.0.1",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-+   "postversion": "react-native-version"
++   "postversion": "ionic-5-version"
   }
 }
 ```
@@ -34,16 +29,16 @@ Hook into the "version" or "postversion" npm script in your app's package.json:
 
 Before you publish a new build of your app, run `npm version <newversion>`.
 
-react-native-version will then update your `android/` and `ios/` code. Depending on the script and options you choose, it can also automatically amend the version bump commit and update the Git tag created by `npm version`. This method should be useful in most cases. If you need more control, take a look at the CLI and options below.
+ionic-5-version will then update your `android/` and `ios/` code. Depending on the script and options you choose, it can also automatically amend the version bump commit and update the Git tag created by `npm version`. This method should be useful in most cases. If you need more control, take a look at the CLI and options below.
 
 ## CLI
 
 ### Setup
 
 ```bash
-$ npm install -g react-native-version
+$ npm install -g ionic-5-version
 # or
-$ yarn global add react-native-version
+$ yarn global add ionic-5-version
 ```
 
 ### Example usage
@@ -51,7 +46,7 @@ $ yarn global add react-native-version
 ```bash
 $ cd AwesomeProject/
 $ npm version patch
-$ react-native-version
+$ ionic-5-version
 ```
 
 ## Options
@@ -59,7 +54,7 @@ $ react-native-version
 <!-- START cli -->
 
     -V, --version                output the version number
-    -a, --amend                  Amend the previous commit. This is done automatically when react-native-version is run from the "version" or "postversion" npm script. Use "--never-amend" if you never want to amend. Also, if the previous commit is a valid npm-version commit, react-native-version will update the Git tag pointing to this commit.
+    -a, --amend                  Amend the previous commit. This is done automatically when ionic-5-version is run from the "version" or "postversion" npm script. Use "--never-amend" if you never want to amend. Also, if the previous commit is a valid npm-version commit, ionic-5-version will update the Git tag pointing to this commit.
     --skip-tag                   For use with "--amend", if you don't want to update Git tags. Use this option if you have git-tag-version set to false in your npm config or you use "--no-git-tag-version" during npm-version.
     -A, --never-amend            Never amend the previous commit.
     -b, --increment-build        Only increment build number.
@@ -68,7 +63,7 @@ $ react-native-version
     -i, --ios [path]             Path to your "ios/" folder. (default: "ios")
     -L, --legacy                 Version iOS using agvtool (macOS only). Requires Xcode Command Line Tools.
     -q, --quiet                  Be quiet, only report errors.
-    -r, --reset-build            Reset build number back to "1" (iOS only). Unlike Android's "versionCode", iOS doesn't require you to bump the "CFBundleVersion", as long as "CFBundleShortVersionString" changes. To make it consistent across platforms, react-native-version bumps both by default. You can use this option if you prefer to keep the build number value at "1" after every version change. If you then need to push another build under the same version, you can use "-bt ios" to increment.
+    -r, --reset-build            Reset build number back to "1" (iOS only). Unlike Android's "versionCode", iOS doesn't require you to bump the "CFBundleVersion", as long as "CFBundleShortVersionString" changes. To make it consistent across platforms, ionic-5-version bumps both by default. You can use this option if you prefer to keep the build number value at "1" after every version change. If you then need to push another build under the same version, you can use "-bt ios" to increment.
     -s, --set-build <number>     Set a build number. WARNING: Watch out when setting high values. This option follows Android's app versioning specifics - the value has to be an integer and cannot be greater than 2100000000. You cannot decrement this value after publishing to Google Play! More info at: https://developer.android.com/studio/publish/versioning.html#appversioning
     --generate-build             Generate build number from the package version number. (e.g. build number for version 1.22.3 will be 1022003)
     -t, --target <platforms>     Only version specified platforms, e.g. "--target android,ios".
@@ -81,8 +76,8 @@ You can apply these options to the "version" or "postversion" script too. If for
 ```diff
 {
   "scripts": {
--   "postversion": "react-native-version"
-+   "postversion": "react-native-version --never-amend"
+-   "postversion": "ionic-5-version"
++   "postversion": "ionic-5-version --never-amend"
   }
 }
 ```
@@ -94,13 +89,13 @@ The default behaviour is to version all React Native platforms. You can target s
 ```bash
 $ RNV=android,ios npm version patch
 # or
-$ RNV=android,ios react-native-version
+$ RNV=android,ios ionic-5-version
 ```
 
 When using the CLI, you can even combine both methods and make your teammates rage :smiling_imp: :suspect:
 
 ```bash
-$ RNV=android react-native-version --target ios
+$ RNV=android ionic-5-version --target ios
 ```
 
 :rage1: :speak_no_evil:
@@ -120,7 +115,7 @@ The behavior can be also adjusted by `.npmrc` and `.yarnrc` config files.
 ## API
 
 ```javascript
-import { version } from "react-native-version";
+import { version } from "ionic-5-version";
 
 async function doSomething() {
   const versionResult = await version({
@@ -195,7 +190,7 @@ Custom type definition for Promises
 
 ### `SyntaxError: Expected """, "\'", "\"", "\n", or [^\"] but "\" found.`
 
-When running `react-native link` on Windows, native modules will be linked in your Xcode project with paths that include backslashes (`\`) instead of forward slashes (`/`). This will break `pbxproj-dom`, which we rely on to parse Xcode projects. To fix this issue, convert any `LIBRARY_SEARCH_PATHS` and `HEADER_SEARCH_PATHS` as shown in [this comment](https://github.com/stovmascript/react-native-version/issues/52#issuecomment-393343784). This step could be automated with a library like [normalize-path](https://www.npmjs.com/package/normalize-path) or [unixify](https://www.npmjs.com/package/unixify).
+When running `react-native link` on Windows, native modules will be linked in your Xcode project with paths that include backslashes (`\`) instead of forward slashes (`/`). This will break `pbxproj-dom`, which we rely on to parse Xcode projects. To fix this issue, convert any `LIBRARY_SEARCH_PATHS` and `HEADER_SEARCH_PATHS` as shown in [this comment](https://github.com/stovmascript/ionic-5-version/issues/52#issuecomment-393343784). This step could be automated with a library like [normalize-path](https://www.npmjs.com/package/normalize-path) or [unixify](https://www.npmjs.com/package/unixify).
 
 ## See also
 
