@@ -19,7 +19,10 @@ Hook into the "version" or "postversion" npm script in your app's package.json:
   "name": "AwesomeProject",
   "version": "0.0.1",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
 +   "postversion": "ionic-5-version"
   }
 }
